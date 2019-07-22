@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectflickr.R
 import com.example.projectflickr.models.Photo
 import com.example.projectflickr.utils.PicassoUtil
@@ -16,9 +15,8 @@ import com.google.gson.Gson
 import com.hootsuite.shipmyid.api.ApiErrorResponse
 import com.hootsuite.shipmyid.api.ApiSuccessResponse
 import kotlinx.android.synthetic.main.flickr_photo_detail.view.*
-import kotlinx.android.synthetic.main.list_of_phots.view.*
 
-class FlickrImageDetail : Fragment() {
+class FlickrImageDetailFragment : Fragment() {
     private lateinit var rootView : View
     private lateinit var flickrImageDetailViewModel : FlickrImageDetailViewModel
 
@@ -49,24 +47,27 @@ class FlickrImageDetail : Fragment() {
         PicassoUtil.getInstance().executePicasso(context!!, url,rootView.imgFlickrDetail)
         rootView.txtDetailTitle.text = flickrImageDetailViewModel.photo?.title
 
-/*        flickrImageDetailViewModel.fetchImageList("48347080026").observe(this, Observer {
+        flickrImageDetailViewModel.fetchImageList().observe(this, Observer {
             when(it){
                 is ApiSuccessResponse -> {
-                    Log.d("SUCCESS", it.body.toString())
+                    val descrption = it.body.photos.description.content
+                    val ownerName = it.body.photos.owner.realName
+                    rootView.txtOwnerName.text = ownerName
+                    rootView.txtPhotoViews.text = it.body.photos.views.toString()
                 }
 
                 is ApiErrorResponse -> {
                     Log.d("FAILURE", it.errorMessage)
                 }
             }
-        })*/
+        })
     }
 
     companion object {
-        fun newInstance (photo: Photo): FlickrImageDetail {
+        fun newInstance (photo: Photo): FlickrImageDetailFragment {
             val bundle = Bundle()
             bundle.putString("photo", Gson().toJson(photo))
-            val flickrImageDetail = FlickrImageDetail ()
+            val flickrImageDetail = FlickrImageDetailFragment ()
             flickrImageDetail.arguments = bundle
             return flickrImageDetail
         }
