@@ -1,15 +1,12 @@
 package com.example.projectflickr.ui.photoDetail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.projectflickr.api.Deserializer
 import com.example.projectflickr.models.Photo
 import com.example.projectflickr.models.PhotoDetailResponse
-import com.example.projectflickr.models.PhotoResponse
-import com.example.projectflickr.models.Photos
-import com.google.gson.reflect.TypeToken
-import com.hootsuite.shipmyid.api.*
+import com.hootsuite.shipmyid.api.ApiResponse
+import com.hootsuite.shipmyid.api.FlickrServices
+import com.hootsuite.shipmyid.api.ServiceGenerator
 
 class FlickrImageDetailViewModel: ViewModel(){
 

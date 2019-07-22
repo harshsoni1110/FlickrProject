@@ -1,14 +1,12 @@
 package com.example.projectflickr.ui.search
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.projectflickr.api.Deserializer
 import com.example.projectflickr.models.Photo
 import com.example.projectflickr.models.PhotoResponse
-import com.example.projectflickr.models.Photos
-import com.google.gson.reflect.TypeToken
-import com.hootsuite.shipmyid.api.*
+import com.hootsuite.shipmyid.api.ApiResponse
+import com.hootsuite.shipmyid.api.FlickrServices
+import com.hootsuite.shipmyid.api.ServiceGenerator
 
 class FlickrSearchResultViewModel: ViewModel(){
 
@@ -20,7 +18,7 @@ class FlickrSearchResultViewModel: ViewModel(){
     }
 
 
-    fun fetchImageList (): LiveData<ApiResponse<PhotoResponse>> {
-        return fetchImageList.fetchList(tags = "nature")
+    fun fetchImageList (searchKey: String): LiveData<ApiResponse<PhotoResponse>> {
+        return fetchImageList.fetchList(tags = searchKey)
     }
 }

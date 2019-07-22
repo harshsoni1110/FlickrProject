@@ -16,6 +16,10 @@ class PicassoUtil{
 
     }
 
+    fun executePicasso (context: Context, imageURL: String, imageView: ImageView,   size:Int) {
+        initPicasso(context)
+        picasso?.load(imageURL)?.resize(size, size)?.into(imageView)
+    }
     fun executePicasso (context: Context, imageURL: String, imageView: ImageView) {
         initPicasso(context)
         picasso?.load(imageURL)?.into(imageView)

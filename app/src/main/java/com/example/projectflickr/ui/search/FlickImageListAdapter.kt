@@ -37,6 +37,6 @@ class FlickImageListAdapter(val mList: ArrayList<Photo>, val listener :FlickrIma
         (holder as RcFlickImageViewHolder).bind(photo, listener)
         holder.itemView.txtTitle.text = photo.title
         val url = "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg"
-        PicassoUtil.getInstance().executePicasso(holder.itemView.context, url, holder.itemView.imageView)
+        PicassoUtil.getInstance().executePicasso(holder.itemView.context, url, holder.itemView.imageView, 50)
     }
 }

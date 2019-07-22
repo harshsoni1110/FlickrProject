@@ -44,11 +44,12 @@ class FlickrImageDetail : Fragment() {
             flickrImageDetailViewModel.photo = Gson().fromJson(beanStr, Photo::class.java)
         }
 
-        val url = "https://farm${flickrImageDetailViewModel.photo?.farm}.staticflickr.com/${flickrImageDetailViewModel.photo?.server}/${flickrImageDetailViewModel.photo?.id}_${flickrImageDetailViewModel.photo?.secret}_z.jpg"
+        val url = "https://farm${flickrImageDetailViewModel.photo?.farm}.staticflickr.com/${flickrImageDetailViewModel.photo?.server}/${flickrImageDetailViewModel.photo?.id}_${flickrImageDetailViewModel.photo?.secret}_b.jpg"
 
         PicassoUtil.getInstance().executePicasso(context!!, url,rootView.imgFlickrDetail)
+        rootView.txtDetailTitle.text = flickrImageDetailViewModel.photo?.title
 
-        flickrImageDetailViewModel.fetchImageList("48347080026").observe(this, Observer {
+/*        flickrImageDetailViewModel.fetchImageList("48347080026").observe(this, Observer {
             when(it){
                 is ApiSuccessResponse -> {
                     Log.d("SUCCESS", it.body.toString())
@@ -58,7 +59,7 @@ class FlickrImageDetail : Fragment() {
                     Log.d("FAILURE", it.errorMessage)
                 }
             }
-        })
+        })*/
     }
 
     companion object {
