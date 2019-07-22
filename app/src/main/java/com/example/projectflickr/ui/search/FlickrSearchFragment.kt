@@ -15,6 +15,10 @@ private const val ARG_PARAM2 = "param2"
 class FlickrSearchFragment : Fragment() {
     private lateinit var rootView : View
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        setHasOptionsMenu(false)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
