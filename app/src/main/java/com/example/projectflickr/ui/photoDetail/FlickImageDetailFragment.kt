@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -22,6 +23,7 @@ class FlickrImageDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -50,7 +52,7 @@ class FlickrImageDetailFragment : Fragment() {
         flickrImageDetailViewModel.fetchImageList().observe(this, Observer {
             when(it){
                 is ApiSuccessResponse -> {
-                    val descrption = it.body.photos.description.content
+//                    val descrption = it.body.photos.description.content
                     val ownerName = it.body.photos.owner.realName
                     rootView.txtOwnerName.text = ownerName
                     rootView.txtPhotoViews.text = it.body.photos.views.toString()

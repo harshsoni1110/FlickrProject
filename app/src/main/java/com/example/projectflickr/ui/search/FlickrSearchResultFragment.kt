@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.projectflickr.MainActivity
 import com.example.projectflickr.R
 import com.example.projectflickr.models.Photo
 import com.example.projectflickr.ui.photoDetail.FlickrImageDetailFragment
@@ -18,22 +19,15 @@ import com.hootsuite.shipmyid.api.ApiSuccessResponse
 import kotlinx.android.synthetic.main.list_of_phots.view.*
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class FlickrSearchResultFragment : Fragment(), FlickImageListAdapter.FlickrImageTapListener {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private lateinit var rootView : View
     private lateinit var flickrSearchResultViewModel : FlickrSearchResultViewModel
     private lateinit var flickImageListAdapter: FlickImageListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+//        setHasOptionsMenu(true)
+//        (activity as MainActivity).setToolBarTextAndUp ("Detail", true)
     }
 
     override fun onCreateView(
