@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectflickr.R
 import com.example.projectflickr.models.Photo
-import com.example.projectflickr.ui.photoDetail.FlickrImageDetail
+import com.example.projectflickr.ui.photoDetail.FlickrImageDetailFragment
 import com.google.android.material.snackbar.Snackbar
 import com.hootsuite.shipmyid.api.ApiErrorResponse
 import com.hootsuite.shipmyid.api.ApiSuccessResponse
@@ -81,7 +81,7 @@ class FlickrSearchResultFragment : Fragment(), FlickImageListAdapter.FlickrImage
     }
 
     override fun onImageClick(photo: Photo) {
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.lytContainer, FlickrImageDetail.newInstance(photo))?.addToBackStack(null)?.commit()
+        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.lytContainer, FlickrImageDetailFragment.newInstance(photo))?.addToBackStack(null)?.commit()
     }
 
     companion object {
