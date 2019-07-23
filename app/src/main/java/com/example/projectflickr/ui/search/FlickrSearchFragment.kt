@@ -6,22 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.projectflickr.FlickrProjectActivity
 import com.example.projectflickr.R
 import com.example.projectflickr.utils.BasicUtil
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.flickr_search.view.*
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
+//Fragment to search
 class FlickrSearchFragment : Fragment() {
+
     private lateinit var rootView : View
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        setHasOptionsMenu(false)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,21 +34,30 @@ class FlickrSearchFragment : Fragment() {
         rootView.btn_search.setOnClickListener {
 
             val searchString = rootView.edt_search_tags.editableText.toString()
+
+            //No text for search
             if (searchString == "") {
                 BasicUtil.hideSoftKeyboard(activity as Activity, rootView)
                 Snackbar.make(rootView , resources.getString(R.string.res_input_require), Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
+
             if (BasicUtil.isNetworkAvailable(context!!)) {
+                //Result screen navigation
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.lytContainer, FlickrSearchResultFragment.newInstance(searchString))?.addToBackStack(null)?.commit()
             }
             else {
+                //Network unavailable, cannot do API call
                 BasicUtil.hideSoftKeyboard(activity as Activity, rootView)
                 Snackbar.make(rootView , resources.getString(R.string.res_network_unavailable), Snackbar.LENGTH_LONG).show()
             }
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as FlickrProjectActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)   //Resetting back button
+    }
 }
 
 

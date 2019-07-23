@@ -17,14 +17,11 @@ import com.hootsuite.shipmyid.api.ApiErrorResponse
 import com.hootsuite.shipmyid.api.ApiSuccessResponse
 import kotlinx.android.synthetic.main.flickr_photo_detail.view.*
 
+//photo detail fragment
 class FlickrImageDetailFragment : Fragment() {
+
     private lateinit var rootView : View
     private lateinit var flickrImageDetailViewModel : FlickrImageDetailViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +49,6 @@ class FlickrImageDetailFragment : Fragment() {
         flickrImageDetailViewModel.fetchImageList().observe(this, Observer {
             when(it){
                 is ApiSuccessResponse -> {
-//                    val descrption = it.body.photos.description.content
                     val ownerName = it.body.photos.owner.realName
                     rootView.txtOwnerName.text = ownerName
                     rootView.txtPhotoViews.text = it.body.photos.views.toString()
