@@ -59,6 +59,7 @@ class FlickrSearchResultFragment : Fragment(), FlickImageListAdapter.FlickrImage
                 is ApiSuccessResponse -> {
                     rootView.progressBarFlickrPhotos.visibility = View.GONE
                     rootView.rcyList.visibility = View.VISIBLE
+                    flickrSearchResultViewModel.photos.clear()
                     flickrSearchResultViewModel.photos.addAll(it.body.photos.photos)
                     flickImageListAdapter.notifyDataSetChanged()
 
